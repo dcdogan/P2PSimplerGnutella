@@ -1,0 +1,21 @@
+JFLAGS = -d bin -cp lib/commons-lang3-3.1-javadoc.jar:lib/commons-lang3-3.1-sources.jar:lib/commons-lang3-3.1-tests.jar:lib/commons-lang3-3.1.jar
+
+JC = javac
+.SUFFIXES: .java .class
+.java.class:
+        $(JC) $(JFLAGS) $*.java
+
+CLASSES := $(wildcard MainScreen/*.java)
+CLASSES += $(wildcard p2pmain/*.java)
+CLASSES += $(wildcard client/*.java)
+CLASSES += $(wildcard OpenThread/*.java)
+CLASSES += $(wildcard ClientListener/*.java)
+CLASSES += $(wildcard Query/*.java)
+CLASSES += $(wildcard Directory/*.java)
+
+default: classes
+
+classes: $(CLASSES:.java=.class)
+
+clean:
+        $(RM) *.class
